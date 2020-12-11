@@ -1,0 +1,38 @@
+import javax.swing.*;
+import java.io.*;
+public class ClasseMenu {
+    public static void main (String[] args)throws IOException{
+        Agendamento[] agendamentos = new Agendamento[5]; //Vetor que armazena as variaveis do agendamento
+        CadastrarCliente [ ] cadcliente = new CadastrarCliente[5]; //Vetor que armazena as variaveis do cadastro de clientes
+        CadastrarServiços [ ] cadservico = new CadastrarServiços [5];//Vetor que armazena as variaveis do cadastro de serviços
+        CadastroAtendente [ ] cadatendente = new CadastroAtendente [5];//Vetor que armazena as variaveis de atendente
+        ClasseCadastros e = new ClasseCadastros();
+        Consultas x = new Consultas();
+        int i, t;
+        for (i=0; i < 5 ; i++){
+            agendamentos [i] = new Agendamento();// Limpando e iniciando os campos das variáveis do vetor agendamento
+            cadcliente [i] = new CadastrarCliente();// Limpando e iniciando os campos das variáveis do vetor de cadastro de clientes
+            cadservico [i] = new CadastrarServiços();// Limpando e iniciando os campos das variáveis do vetor de cadastro de serviços
+            cadatendente [i] = new CadastroAtendente();// Limpando e iniciando os campos das variáveis do vetor cadastro de atendente
+        }
+        do {
+            t = Integer.parseInt(JOptionPane.showInputDialog("1 - Cadastrar Atendentes \n2 - Cadastrar Clientes "
+                    + "\n3 - Cadastrar Serviços \n4 - Cadastrar Agendamentos \n5 - Consultas \n9 - Finalizar"));
+            switch (t)
+            {
+                case 1: cadatendente = e.FCadastraAtendente(cadatendente); //Função para chamar o cadastro de atendentes
+                    break;
+                case 2: cadcliente = e.FCadastraClientes(cadcliente);//Função para chamar o cadastro de clientes
+                    break;
+                case 3: cadservico = e.FCadastraServiços(cadservico);//Função para chamar o cadastro de serviços
+                    break;
+                case 4: agendamentos = e.FAgendamento(agendamentos, cadservico);//Função para chamar o cadastro de agendamentos
+                    break;
+                case 5: x.ConsultasMenu(agendamentos, cadcliente, cadservico, cadatendente);//Procedure para chamar o menu de consultas
+                case 9: JOptionPane.showMessageDialog(null,"Finalizado.");//Finaliza o programa
+                    break;
+                default: JOptionPane.showMessageDialog(null,"Opção digitada inválida.");
+            }
+        }while(t != 9);
+    }
+}

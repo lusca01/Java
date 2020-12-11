@@ -1,0 +1,202 @@
+import java.io.*;
+import javax.swing.*;
+public class Consultas {
+    public void ConsultasMenu(Agendamento[] agendamentos, CadastrarCliente[]cadcliente, CadastrarServiços[] cadserviços, CadastroAtendente[] cadatendentes)throws IOException{
+        //Definição dos arquivos que serão lidos
+        String arquivoagendamentos = "Agendamentos.txt"; String arquivoclientes = "CadastroClientes.txt"; 
+        String arquivoserviços = "CadastroServiços.txt"; String arquivoatendentes = "CadastroAtendentes.txt";
+        BufferedReader leragen = new BufferedReader(new FileReader(arquivoagendamentos));
+        BufferedReader lerclie = new BufferedReader(new FileReader(arquivoclientes));
+        BufferedReader leraten = new BufferedReader(new FileReader(arquivoatendentes));
+        BufferedReader lerserv = new BufferedReader(new FileReader(arquivoserviços));
+        int i, t;
+        for (i=0;i<5;i++){
+            //Leitura dos itens do arquivo de agendamentos
+            agendamentos[i].agennome = leragen.readLine();
+            agendamentos[i].agendia = Integer.parseInt(leragen.readLine());
+            agendamentos[i].agenmes = Integer.parseInt(leragen.readLine());
+            agendamentos[i].agenano = Integer.parseInt(leragen.readLine());
+            agendamentos[i].agenhr = Integer.parseInt(leragen.readLine());
+            agendamentos[i].agenmin = Integer.parseInt(leragen.readLine());
+            agendamentos[i].agenservico = leragen.readLine();
+            agendamentos[i].agenvalor = Double.parseDouble(leragen.readLine());
+            //Leitura dos itens do arquivo clientes
+            cadcliente[i].clienome = lerclie.readLine();
+            cadcliente[i].clieemail = lerclie.readLine();
+            cadcliente[i].clietel = lerclie.readLine();
+            //Leitura dos itens do arquivo de serviços
+            cadserviços[i].serserv = lerserv.readLine();
+            cadserviços[i].serval = Double.parseDouble(lerserv.readLine());
+            //Leitura dos itens do arquivo de atendentes
+            cadatendentes[i].atendnome = leraten.readLine();
+            cadatendentes[i].atendemail = leraten.readLine();
+            cadatendentes[i].atendtel = Integer.parseInt(leraten.readLine());
+        }
+        do {
+            t = Integer.parseInt(JOptionPane.showInputDialog("1 - Clientes Cadastrados \n2 - Serviços Cadastrados"
+                    + " \n3 - Atendentes Cadastrados\n4 - Agendamentos Cadastrados \n5 - Agendamentos do dia \n6 - Valor Por Mês \n9 - Finalizar"));
+            switch (t)
+            {
+                case 1: PClientesCadastrados(cadcliente); break; //Chama a procedure para consultar clientes cadastrados
+                case 2: PServiçosCadastrados(cadserviços); break;//Chama a procedure para consultar serviços cadastrados
+                case 3: PAtendentesCadastrados(cadatendentes); break;//Chama a procedure para consultar atendendentes cadastrados
+                case 4: agendamentos = FAgendamentosCadastrados(agendamentos); break;//Chama a procedure para consultar os agendamentos marcados
+                case 5: PAgendamentosDia(agendamentos); break;//Chama a procedure para consultar o agendamento por dia e mês específicos
+                case 6: PValorMes(agendamentos); break;//Chama a procedure para consultar o valor a ser recebido de acordo com os serviços do mês que será solicitado
+                case 9: JOptionPane.showMessageDialog(null,"Finalizado."); break;//Finaliza a consulta
+                default: JOptionPane.showMessageDialog(null,"Opção digitada inválida.");
+            }
+        }while(t != 9);
+        leragen.close();
+        lerclie.close();
+        leraten.close();
+        lerserv.close();
+    }
+
+    //Procedure para consultar clientes cadastrados
+    public void PClientesCadastrados(CadastrarCliente[] clientes)throws IOException{
+        int i;
+        System.out.println("**   Clientes Cadastrados   **");//Título
+        //Consultando por cada posição do vetor
+        for (i=0;i<5;i++){
+            System.out.print(clientes[i].clienome + "   ");
+            System.out.print(clientes[i].clieemail + "   ");
+            System.out.print(clientes[i].clietel + "\n");
+        }
+    }
+
+    //Procedure para consultar os serviços cadastrados
+    public void PServiçosCadastrados(CadastrarServiços[] serviços)throws IOException{
+        int i;
+        System.out.println("**  Serviços Cadastrados  **");//Título
+        //Consultando por cada posição do vetor
+        for (i=0;i<5;i++){
+            System.out.print(serviços[i].serserv + "   ");
+            System.out.print(serviços[i].serval + "\n");
+        }
+    }
+
+    //Procedure para consulta os atendentes cadastrados
+    public void PAtendentesCadastrados(CadastroAtendente[] atendentes)throws IOException{
+        int i;
+        System.out.println("**   Lista de Atendentes   **");//Título
+        //Consultando por cada posição do vetor
+        for (i=0;i<5;i++){
+            System.out.print(atendentes[i].atendnome + "   ");
+            System.out.print(atendentes[i].atendemail + "   ");
+            System.out.print(atendentes[i].atendtel + "\n");
+        }
+    }
+    
+    //Procedure para consultar os agendamentos por ordem de data
+    public Agendamento[] FAgendamentosCadastrados(Agendamento[] agendamentos)throws IOException{
+        int i, j, aux2, aux3, aux4, aux5; String aux6, aux8; Double aux7;
+        //Bubble sort mes
+        for (i=0;i<4;i++){
+            for (j = i+1;j<5; j++){
+                if(agendamentos[i].agenmes > agendamentos[j].agenmes){
+                    //mes
+                    aux2 = agendamentos[i].agenmes;
+                    agendamentos[i].agenmes = agendamentos[j].agenmes;
+                    agendamentos[j].agenmes = aux2;
+                    //dia
+                    aux3 = agendamentos[i].agendia;
+                    agendamentos[i].agendia = agendamentos[j].agendia;
+                    agendamentos[j].agendia = aux3;
+                    //hora
+                    aux4 = agendamentos[i].agenhr;
+                    agendamentos[i].agenhr = agendamentos[j].agenhr;
+                    agendamentos[j].agenhr = aux4;
+                    //min
+                    aux5 = agendamentos[i].agenmin;
+                    agendamentos[i].agenmin = agendamentos[j].agenmin;
+                    agendamentos[j].agenmin = aux5;
+                    //nome
+                    aux6 = agendamentos[i].agennome;
+                    agendamentos[i].agennome = agendamentos[j].agennome;
+                    agendamentos[j].agennome = aux6;
+                    //valor
+                    aux7 = agendamentos[i].agenvalor;
+                    agendamentos[i].agenvalor = agendamentos[j].agenvalor;
+                    agendamentos[j].agenvalor = aux7;
+                    //serviço
+                    aux8 = agendamentos[i].agenservico;
+                    agendamentos[i].agenservico = agendamentos[j].agenservico;
+                    agendamentos[j].agenservico = aux8;
+                }
+            }
+        }
+        //Bubble sort dia
+        for (i=0;i<4;i++){
+            for (j = i+1;j<5; j++){
+                if(agendamentos[i].agendia > agendamentos[j].agendia && agendamentos[i].agenmes > agendamentos[i].agenmes){
+                    //mes
+                    aux2 = agendamentos[i].agenmes;
+                    agendamentos[i].agenmes = agendamentos[j].agenmes;
+                    agendamentos[j].agenmes = aux2;
+                    //dia
+                    aux3 = agendamentos[i].agendia;
+                    agendamentos[i].agendia = agendamentos[j].agendia;
+                    agendamentos[j].agendia = aux3;
+                    //hora
+                    aux4 = agendamentos[i].agenhr;
+                    agendamentos[i].agenhr = agendamentos[j].agenhr;
+                    agendamentos[j].agenhr = aux4;
+                    //min
+                    aux5 = agendamentos[i].agenmin;
+                    agendamentos[i].agenmin = agendamentos[j].agenmin;
+                    agendamentos[j].agenmin = aux5;
+                    //nome
+                    aux6 = agendamentos[i].agennome;
+                    agendamentos[i].agennome = agendamentos[j].agennome;
+                    agendamentos[j].agennome = aux6;
+                    //valor
+                    aux7 = agendamentos[i].agenvalor;
+                    agendamentos[i].agenvalor = agendamentos[j].agenvalor;
+                    agendamentos[j].agenvalor = aux7;
+                    //serviço
+                    aux8 = agendamentos[i].agenservico;
+                    agendamentos[i].agenservico = agendamentos[j].agenservico;
+                    agendamentos[j].agenservico = aux8;
+                }
+            }
+        }
+        System.out.println("**  Os Agendamentos Marcados em ordem de dias são:   **");//Título
+        //Mostrando os agendamentos
+        for(i=0;i<5; i++){
+            System.out.print(agendamentos[i].agendia+"/"+agendamentos[i].agenmes+"/"+agendamentos[i].agenano+"  "+agendamentos[i].agenhr+":"
+                    +agendamentos[i].agenmin+" "+ agendamentos[i].agennome+"  "+agendamentos[i].agenservico +"   R$"+agendamentos[i].agenvalor+"\n");
+        }
+        return agendamentos;
+    }
+    
+    //Procedure para consultar agendamentos marcados para dia e mês especifico
+    public void PAgendamentosDia(Agendamento[] agendamentos)throws IOException{
+        int dia, mes, i;
+        dia = Integer.parseInt(JOptionPane.showInputDialog("Que dia gostaria de consultar? ")); //Recebendo o dia a ser consultado
+        mes = Integer.parseInt(JOptionPane.showInputDialog("De que mês gostaria de consultar? "));//Recebendo o mês a ser consultado
+        System.out.println("** Agendamentos Marcados para o dia "+dia+" do mês "+mes+" são: **");//Título
+        for (i=0;i<5; i++){
+            //Filtrando os itens que serão mostrados
+            if(agendamentos[i].agendia == dia && agendamentos[i].agenmes == mes){
+                System.out.print(agendamentos[i].agendia+"/"+agendamentos[i].agenmes+"/"+agendamentos[i].agenano+"  "+agendamentos[i].agenhr+":"
+                        +agendamentos[i].agenmin+" "+ agendamentos[i].agennome+"  "+agendamentos[i].agenservico+"  R$"+agendamentos[i].agenvalor+"\n");
+            }
+        }
+    }
+    
+    //Procedure para consultar o valor a ser recebido de acordo com o mês solicitado
+    public void PValorMes(Agendamento[] agendamentos){
+        int mes, i, j;
+        double valor = 0.0;
+        mes = Integer.parseInt(JOptionPane.showInputDialog("Digite o mês que queira saber o valor a receber/ser recebido: "));//Recebendo o mês a ser consultado
+        //Filtrando para receber apenas o valor do mês solicitado
+        for(i=0;i<5;i++){
+            if(mes == agendamentos[i].agenmes){
+                valor = valor + agendamentos[i].agenvalor;
+            }
+        }
+        //Apresentando o resultado da consulta
+        System.out.println("O valor total recebido/ a receber no mês "+mes+" é R$"+valor);
+    }
+}

@@ -1,0 +1,163 @@
+import javax.swing.*;
+import java.io.*;
+public class ClasseCadastros {
+    ClasseErros erros = new ClasseErros();
+   
+    //Função para cadastro de agendamentos ***Só funciona caso cadastre serviços antes***
+    
+    public  Agendamento [] FAgendamento(Agendamento[] agendamento, CadastrarServiços[] cadservico)throws IOException {
+        int i, t;
+        String fileName = "Agendamentos.txt";
+        String arquivoserviços = "CadastroServiços.txt";
+        BufferedReader lerserv = new BufferedReader(new FileReader(arquivoserviços));
+        BufferedWriter gravaragendamento = new BufferedWriter(new FileWriter(fileName));
+        //Leitura do arquivo serviços para poder prosseguir o agendamento
+        for(i=0;i<5;i++){
+            cadservico[i].serserv = lerserv.readLine();
+            cadservico[i].serval = Double.parseDouble(lerserv.readLine());
+        }
+        for(i=0;i<5;i++){
+
+            do {
+                agendamento[i].agennome = JOptionPane.showInputDialog("Digite o nome do " + (i + 1) + "º cliente:");
+            }while(erros.ChecaLetras(agendamento[i].agennome));
+            do {agendamento[i].agendia = Integer.parseInt(JOptionPane.showInputDialog("Digite o dia do "+(i+1)+"º agendamento:"));// Recebendo dia do agendamento
+                if (agendamento[i].agendia > 31 || agendamento[i].agendia < 1){
+                    JOptionPane.showMessageDialog(null,"Dia digitado inválido! Tente novamento com um dia correto.");}// Exibindo mensagem de erro caso dia não seja válido
+            }while(agendamento[i].agendia > 31 || agendamento[i].agendia < 1);// Condicionando para receber apenas dias > 1 e < 31
+
+            do{agendamento[i].agenmes = Integer.parseInt(JOptionPane.showInputDialog("Digite o mês do "+(i+1)+"º agendamento:"));// Recebendo mês do agendamento
+                if (agendamento[i].agenmes > 12 || agendamento[i].agenmes < 1){
+                    JOptionPane.showMessageDialog(null,"Mês digitado inválido! Tente novamento com um mês correto.");}// Exibindo mensagem de erro caso mês não seja válido
+            }while(agendamento[i].agenmes > 12 || agendamento[i].agenmes < 1);// Condicionando para receber apenas mes > 1 e < 13
+
+            do {agendamento[i].agenhr = Integer.parseInt(JOptionPane.showInputDialog("Digite a hora(apenas a hora) do "+(i+1)+"º agendamento:"));// Recebendo hora do agendamento
+                if (agendamento[i].agenhr > 23 || agendamento[i].agenhr < 0){
+                    JOptionPane.showMessageDialog(null,"Hora digitada inválida! Tente novamente com uma hora correta.");}// Exibindo mensagem de erro caso hora não seja válida
+            }while(agendamento[i].agenhr > 23 || agendamento[i].agenhr < 0);// Condicionando para receber apenas horas > 0 e < 24
+
+            do{agendamento[i].agenmin = Integer.parseInt(JOptionPane.showInputDialog("Digite o minuto do "+(i+1)+"º agendamento: "));// Recebendo minutos do agendamento
+                if (agendamento[i].agenmin < 0 || agendamento[i].agenmin > 59){
+                    JOptionPane.showMessageDialog(null,"Minuto digitado inválido! Tente novamento com um minuto correto.");}// Exibindo mensagem de erro caso minuto não seja válido
+            }while(agendamento[i].agenmin < 0 || agendamento[i].agenmin > 59);// Condicionando para receber apenas minutos > 0 e < 60
+
+            do {t = Integer.parseInt(JOptionPane.showInputDialog("1 - "+cadservico[0].serserv+"\n2 - "+cadservico[1].serserv+"\n3 - "+cadservico[2].serserv
+                    +"\n4 - "+cadservico[3].serserv+"\n5 - "+cadservico[4].serserv));// Recebendo o serviço solicitado
+                switch (t)
+                {
+                    case 1: agendamento[i].agenservico  = cadservico[0].serserv; break;
+                    case 2: agendamento[i].agenservico  = cadservico[1].serserv; break;
+                    case 3: agendamento[i].agenservico  = cadservico[2].serserv; break;
+                    case 4: agendamento[i].agenservico  = cadservico[3].serserv; break;
+                    case 5: agendamento[i].agenservico  = cadservico[4].serserv; break;
+                    default: JOptionPane.showMessageDialog(null,"Opção digitada inválida.");
+                }
+            }while(t < 1 || t > 5);
+            switch (t){
+                case 1: agendamento[i].agenvalor  = cadservico[0].serval; break;
+                case 2: agendamento[i].agenvalor  = cadservico[1].serval; break;
+                case 3: agendamento[i].agenvalor  = cadservico[2].serval; break;
+                case 4: agendamento[i].agenvalor  = cadservico[3].serval; break;
+                case 5: agendamento[i].agenvalor  = cadservico[4].serval; break;
+            }
+            JOptionPane.showMessageDialog(null,"Serviço definido! \nO Valor de "+agendamento[i].agenservico+" é R$"+agendamento[i].agenvalor);
+        }
+        //Gravação dos agendamentos
+        for(i=0;i<5;i++){
+            gravaragendamento.write(agendamento[i].agennome);gravaragendamento.newLine();
+            gravaragendamento.write(Integer.toString(agendamento[i].agendia));gravaragendamento.newLine();
+            gravaragendamento.write(Integer.toString(agendamento[i].agenmes));gravaragendamento.newLine();
+            gravaragendamento.write(Integer.toString(agendamento[i].agenano));gravaragendamento.newLine();
+            gravaragendamento.write(Integer.toString(agendamento[i].agenhr));gravaragendamento.newLine();
+            gravaragendamento.write(Integer.toString(agendamento[i].agenmin));gravaragendamento.newLine();
+            gravaragendamento.write(agendamento[i].agenservico);gravaragendamento.newLine();
+            gravaragendamento.write(Double.toString(agendamento[i].agenvalor));gravaragendamento.newLine();
+        }
+        JOptionPane.showMessageDialog(null,"Agendamentos salvos com sucesso!");
+        gravaragendamento.close();
+        lerserv.close();
+        return agendamento;
+    }
+
+    //Função para cadastro de atendentes
+    public CadastroAtendente[] FCadastraAtendente(CadastroAtendente[] cadatendente)throws IOException {
+        int i;
+        String fileName = "CadastroAtendentes.txt";
+        BufferedWriter gravaratendentes = new BufferedWriter(new FileWriter(fileName));
+        for(i=0;i<5;i++){
+
+                String aux; //variável auxiliar para conversão e checagem de conteúdo no campo telefone
+                do {
+                    cadatendente[i].atendnome = JOptionPane.showInputDialog("Digite o nome do " + (i + 1) + "º atendente:");
+                }while(erros.ChecaLetras(cadatendente[i].atendnome));
+                do {
+                    cadatendente[i].atendemail = JOptionPane.showInputDialog("Digite o email do " + (i + 1) + "º atendente:");
+                }while(erros.ChecaEmail(cadatendente[i].atendemail));
+                do {
+                    aux = JOptionPane.showInputDialog("Digite o telefone do " + (i + 1) + "º atendente:");
+                }while(erros.ChecaNumeros(aux));
+            cadatendente[i].atendtel = Integer.parseInt(aux);
+        }
+        //Gravação dos atendentes
+        for(i=0;i<5;i++){
+            gravaratendentes.write(cadatendente[i].atendnome);gravaratendentes.newLine();
+            gravaratendentes.write(cadatendente[i].atendemail);gravaratendentes.newLine();
+            gravaratendentes.write(Integer.toString(cadatendente[i].atendtel));
+            gravaratendentes.newLine();
+        }
+        JOptionPane.showMessageDialog(null,"Atendentes cadastrados com sucesso!");
+        gravaratendentes.close();
+        return cadatendente;
+    }
+
+    //Função para cadastros de serviços
+    public CadastrarServiços[] FCadastraServiços(CadastrarServiços[] cadserviços)throws IOException{
+        int i;
+        String aux = "";
+        String fileName = "CadastroServiços.txt";
+        BufferedWriter gravarserviços = new BufferedWriter(new FileWriter(fileName));
+        for(i=0;i<5;i++){
+            do {
+                cadserviços[i].serserv = JOptionPane.showInputDialog("Digite o nome do " + (i + 1) + "º serviço: ");
+            }while(erros.ChecaLetras(cadserviços[i].serserv));
+            do {
+                aux = JOptionPane.showInputDialog("Digite o valor do " + (i + 1) + "º serviço: ");
+            }while(erros.ChecaValorDinheiro(aux));
+            cadserviços[i].serval = Double.parseDouble(aux);
+        }
+        //Gravação dos serviços
+        for (i=0;i<5;i++){
+            gravarserviços.write(cadserviços[i].serserv);gravarserviços.newLine();
+            gravarserviços.write(Double.toString(cadserviços[i].serval));gravarserviços.newLine();
+        }
+        JOptionPane.showMessageDialog(null,"Serviços cadastrados com sucesso!");
+        gravarserviços.close();
+        return cadserviços;
+    }
+    
+    //Função para cadastros dos clientes
+    public CadastrarCliente[] FCadastraClientes(CadastrarCliente[] cadcliente)throws IOException{
+        int i;
+        String fileName = "CadastroClientes.txt";
+        BufferedWriter gravarclientes = new BufferedWriter(new FileWriter(fileName));
+        for(i=0;i<5;i++){
+            do{
+            cadcliente[i].clienome = JOptionPane.showInputDialog("Digite o nome do "+(i+1)+"º Cliente: ");}while(erros.ChecaLetras(cadcliente[i].clienome));
+            do{
+                cadcliente[i].clieemail = JOptionPane.showInputDialog("Digite o email do "+(i+1)+"º Cliente: ");
+            }while(erros.ChecaEmail(cadcliente[i].clieemail));
+            do{
+            cadcliente[i].clietel = JOptionPane.showInputDialog("Digite o telefone do "+(i+1)+"º Cliente: ");
+            }while(erros.ChecaNumeros(cadcliente[i].clietel));
+        }
+        //Gravação dos clientes
+        for (i=0;i<5;i++){
+            gravarclientes.write(cadcliente[i].clienome);gravarclientes.newLine();
+            gravarclientes.write(cadcliente[i].clieemail);gravarclientes.newLine();
+            gravarclientes.write(cadcliente[i].clietel);gravarclientes.newLine();
+        }
+        JOptionPane.showMessageDialog(null,"Clientes cadastrados com sucesso!");
+        gravarclientes.close();
+        return cadcliente;
+    }
+}

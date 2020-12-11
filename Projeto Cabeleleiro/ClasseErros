@@ -1,0 +1,45 @@
+import jdk.nashorn.internal.scripts.JO;
+import javax.swing.*;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
+
+public class ClasseErros {
+    public boolean ChecaLetras (String entrada){
+        if(!entrada.matches("[a-zA-Z]+$")){
+            JOptionPane.showMessageDialog(null,"O Campo deve possuir somente letras e não pode estar vazio!");
+            return true;
+        }
+        else {
+            return false;
+        }
+}
+    public boolean ChecaEmail (String entrada){
+        if(!entrada.matches("^[a-zA-Z0-9_+&*-]+(?:\\."+ "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-z" + "A-Z]{2,7}$")){
+            JOptionPane.showMessageDialog(null,"O email digitado não é valido!");
+            return true;
+        }else {
+            return false;
+        }
+    }
+    public boolean ChecaNumeros (String entrada){
+        if(!entrada.matches("[0-9]+")){
+            JOptionPane.showMessageDialog(null,"O campo deve possuir apenas números positivos!");
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public boolean ChecaValorDinheiro (String entrada){
+        if(entrada.matches("00.00")){
+            JOptionPane.showMessageDialog(null,"O valor não pode ser nulo ou negativo!");
+            return true;
+        }
+        else if(!entrada.matches("([0-9]+)(.?)(\\d{2}?)") || entrada == "00.00"){
+            JOptionPane.showMessageDialog(null, "Valor inválido! Digite o valor separando os reais dos centavos. (ex:  10.50");
+            return true;
+        }else{
+        return false;
+    }}
+}

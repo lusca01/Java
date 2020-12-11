@@ -1,0 +1,61 @@
+class Agendamento {
+    int agenhr, agenmin; //Váriaveis para agendamento horário
+    int agendia, agenmes, agenano; //Variáveis para agendamento data
+    double agenvalor;//Variável do valor que o cliente irá pagar pelo serviço
+    String agennome, agenservico; // Nome de quem agendou
+
+    Agendamento()
+    {
+        this(0, 0, 0, 0, 2021, 0.0, "","");// Iniciando variáveis agendamento
+    }
+
+    Agendamento(int agendamentohr, int agendamentomin, int agendamentodia, int agendamentomes, int agendamentoano, double agendamentovalor, String agendamentonome, String agendamentoserviço)
+    {
+        agenhr = agendamentohr;
+        agenmin = agendamentomin;
+        agendia = agendamentodia;
+        agenmes = agendamentomes;
+        agenano = agendamentoano;
+        agenvalor = agendamentovalor;
+        agennome = agendamentonome;
+        agenservico = agendamentoserviço;
+    }
+}
+class CadastroAtendente {
+    String atendemail, atendnome; // Variáveis do email e nome do atendente
+    int atendtel; // Variável do telefone do atendente;
+
+    CadastroAtendente(){
+        this ("","", 0); // Iniciando variáveis atendente
+    }
+    CadastroAtendente(String atendenteemail, String atendentenome, int atendentetelefone){
+        atendemail = atendenteemail;
+        atendnome = atendentenome;
+        atendtel = atendentetelefone;
+    }
+}
+class CadastrarServiços{
+    String serserv;//Variável do nome do serviço
+    double serval;//Variável do valor do serviço
+
+    CadastrarServiços(){
+        this ("", 0.0);//Iniciando Variáveis do cadastro de Serviços
+    }
+    CadastrarServiços(String servicoservico, double servicovalor){
+        serserv = servicoservico;
+        serval = servicovalor;
+    }
+}
+class CadastrarCliente{
+    String clienome, clieemail, cliesenha, clietel;//Variáveis das info do cliente
+
+    CadastrarCliente(){
+        this("","","","");
+    }
+    CadastrarCliente(String clientenome, String clienteemail, String clientesenha, String clientetelefone){
+        clienome = clientenome;
+        clieemail = clienteemail;
+        cliesenha = clientesenha;
+        clietel = clientetelefone;
+    }
+}
