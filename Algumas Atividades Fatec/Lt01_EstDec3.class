@@ -1,0 +1,28 @@
+import javax.swing.*;
+public class Lt01_EstDec3{
+public static void main(String arg[]){
+  double salario, aumento;
+  int opcao = 0;
+  opcao = Integer.parseInt(JOptionPane.showInputDialog("Digite o código:"));
+  salario = Double.parseDouble(JOptionPane.showInputDialog("Infome o salário atual:"));
+  switch (opcao){
+      case 1 :
+         aumento = salario + (salario*0.5);
+         System.out.println("Cargo - Escriturário / Salário atual: " + salario + " / Salário com aumento: " + aumento);
+         break;
+      case 2 :
+         aumento = salario + (salario*0.35);
+         System.out.println("Cargo - Secretário / Salário atual: " + salario + " / Salário com aumento: " + aumento );
+         break;
+      case 3 :
+         aumento = salario + (salario*0.2);
+         System.out.println("Cargo - Caixa / Salário atual: " + salario + " / Salário com aumento: " + aumento);
+         break;
+      case 4 :
+         aumento = salario + (salario*0.1);
+         System.out.println("Cargo - Gerente / Salário atual: " + salario + " / Salário com aumento: " + aumento);
+         break;
+      default  : System.out.println ("Não há cargo");
+  }  
+  }
+}

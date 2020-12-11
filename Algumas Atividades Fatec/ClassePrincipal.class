@@ -1,0 +1,25 @@
+import javax.swing.JOptionPane;
+public class ClassePrincipal {
+    public static void main (String args[]) {
+        ClasseMetodos m = new ClasseMetodos();
+        double v[] = new  double[3];
+        double mt[][] = new double [3][2];
+        int t = 0;
+      do {
+       t = Integer.parseInt(JOptionPane.showInputDialog("1 - Receber notas \n2 - Calcular média \n3 - Mostrar médias \n9 - Finalizar"));
+       switch (t)
+            {
+                  case 1: mt = m.FunçãoNotas(mt);
+                               break;
+                  case 2: v = m.FunçãoCalcula(mt);
+                               break;
+                  case 3: m.ProcedimentoMostra(v);
+                               break;
+                  case 9: JOptionPane.showMessageDialog(null,"Finalizado.");
+                               break;
+                  default: JOptionPane.showMessageDialog(null,"Opção digitada inválida.");
+            }
+      }
+      while(t != 9);
+   }
+}

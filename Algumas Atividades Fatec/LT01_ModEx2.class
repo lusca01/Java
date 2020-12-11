@@ -1,0 +1,35 @@
+import javax.swing.*;
+public class LT01_ModEx2 {
+   public static void main(String args[]){
+      int HI, MI, HF, MF;
+      HI = Integer.parseInt(JOptionPane.showInputDialog("Digite a hora em que começou a jogar: "));
+      MI = Integer.parseInt(JOptionPane.showInputDialog("Digite o minuto em que começou a jogar: "));
+      HF = Integer.parseInt(JOptionPane.showInputDialog("Digite a hora em que parou de jogar: "));
+      MF = Integer.parseInt(JOptionPane.showInputDialog("Digite o minuto em que parou de jogar: "));
+      if (HI > 23 || HF > 23 || MI > 59 || MF > 59){
+          JOptionPane.showMessageDialog(null,"Algum valor inserido está incorreto");
+      }else{
+          tempoJogado(HI,MI,HF,MF);
+      }
+   }
+static void tempoJogado(int HI, int MI, int HF, int MF){
+  int HJ, MJ;
+  if (HI <= HF && MI <= MF){
+     HJ = HF - HI;
+     MJ = MF - MI;
+     JOptionPane.showMessageDialog(null,"O tempo jogado foi " + HJ + "h" + MJ);
+ }else if (HI < HF && MI > MF){
+           HJ = (HF - HI)-1;
+           MJ = (MF+60)-MI;
+           JOptionPane.showMessageDialog(null,"O tempo jogado foi " + HJ + "h" + MJ);
+       }else if (HI > HF && MI <= MF){
+                 HJ = (HF+24) - HI;
+                 MJ = MF - MI;
+                 JOptionPane.showMessageDialog(null,"O tempo jogado foi " + HJ + "h" + MJ);
+            }else if (HI >= HF && MI >= MF){
+                      HJ = (HF+23) - HI;
+                      MJ = (MF+60) - MI;
+                      JOptionPane.showMessageDialog(null,"O tempo jogado foi " + HJ + "h" + MJ);
+                  }  
+  }
+}

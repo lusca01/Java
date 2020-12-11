@@ -1,0 +1,12 @@
+import javax.swing.JOptionPane;
+public class LT01_EX3{
+    public static void main (String args[]){
+    int x, y, z;
+    x = Integer.parseInt(JOptionPane.showInputDialog("Digite um número: "));
+    y = Integer.parseInt(JOptionPane.showInputDialog("Digite um outro número: "));
+    z = y;
+    y = x;
+    x = z;
+    JOptionPane.showMessageDialog(null,"Trocando a ordem, os valores digitado ficam: " + x + " e " + y);
+    }
+}

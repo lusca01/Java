@@ -1,0 +1,26 @@
+import javax.swing.*;
+public class Tarefa08 {
+  public static void main(String args[]){
+    int i, j;
+    double notas[][] = new double [3][2], soma = 0, media = 0;
+    for (i=0; i < 3; i++){
+      media = 0;
+      soma = 0;
+      for (j=0; j < 2; j++){
+        notas[i][j]= Double.parseDouble(JOptionPane.showInputDialog("Digite a nota do aluno "+(i+1)+" na prova "+(j+1)+":"));
+        soma = soma+ notas[i][j];
+      } 
+      media = soma/2;
+      System.out.println("A média do aluno "+(i+1)+" é " + media);
+    }
+    for (i=0; i < 2 ; i++){
+      media = 0;
+      soma = 0;
+      for (j=0; j < 3; j++){
+        soma = soma+ notas[j][i];
+      } 
+      media = soma/3;
+      System.out.println( "\nA média da prova "+(i+1)+" é " + media); 
+    }
+  }
+}

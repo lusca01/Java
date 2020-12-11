@@ -1,0 +1,22 @@
+import javax.swing.JOptionPane;
+public class LT01_ModEx1 {
+  public static void main(String arg[]){
+  int n1, n2, n3, n4;
+  n1 = Integer.parseInt(JOptionPane.showInputDialog("Digite a nota do primeiro bimestre: "));
+  n2 = Integer.parseInt(JOptionPane.showInputDialog("Digite a nota do segundo bimestre: "));
+  n3 = Integer.parseInt(JOptionPane.showInputDialog("Digite a nota do terceiro bimestre: "));
+  n4 = Integer.parseInt(JOptionPane.showInputDialog("Digite a nota do quarto bimestre: "));
+  mediaMSG(n1,n2,n3,n4);
+  }
+static void mediaMSG(int a,int b, int c, int d){
+    double media;
+    media = ((double)(a + b + c + d)/4);
+    if ((media >= 3) && (media < 6)){
+       JOptionPane.showMessageDialog(null,"EXAME");
+    }else if (media >= 6) {
+            JOptionPane.showMessageDialog(null,"APROVADO");
+          }else{
+            JOptionPane.showMessageDialog(null,"RETIDO");
+            }
+    }
+}

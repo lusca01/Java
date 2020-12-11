@@ -1,0 +1,22 @@
+import javax.swing.*;
+public class LT01_EstFun1 {
+    public static void main(String args[]){
+    int x, y;
+    x = Integer.parseInt(JOptionPane.showInputDialog("Digite um número:"));
+    y = Integer.parseInt(JOptionPane.showInputDialog("Digite outro número:"));
+    if (x > y){
+        System.out.print("A somatória dos números impares entre " + y + " e "+x+" é " + Somatoria(y,x));
+    }else if (x < y){
+            System.out.print("A somatória dos números impares entre " + x + " e "+y+" é " + Somatoria(x,y));
+        }
+ }
+ static int Somatoria(int v1, int v2){
+  int soma = 0, z;
+  for (z = v1; z <=v2; z++){
+    if (z % 2 != 0){
+        soma = soma + z;
+    }    
+    }
+  return soma;
+ }
+}

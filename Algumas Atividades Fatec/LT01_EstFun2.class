@@ -1,0 +1,18 @@
+import javax.swing.*;
+public class LT01_EstFun2 {
+  public static void main(String args[]){
+  int n;
+  n = Integer.parseInt(JOptionPane.showInputDialog("Digite um número: "));
+  System.out.println("O resultado da série é " +Serie(n));
+  }    
+static double Serie(int n){
+   double c = 1;
+   double res;
+   res = 1;
+   while (c <= n){
+      res = res + (1/c);
+      c++;
+   }
+  return res;
+ }
+}

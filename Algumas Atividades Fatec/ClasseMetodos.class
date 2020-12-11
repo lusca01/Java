@@ -1,0 +1,33 @@
+import javax.swing.JOptionPane;
+public class ClasseMetodos {
+     public double[][] FunçãoNotas(double z[][]) {
+        int  i, j;
+        double notas [][] = new double [3][2];
+    for (i=0; i < 3; i++){
+      for (j=0; j < 2; j++){
+        notas[i][j]= Double.parseDouble(JOptionPane.showInputDialog("Digite a nota do aluno "+(i+1)+" na prova "+(j+1)+":"));
+       } 
+     }
+      JOptionPane.showMessageDialog(null,"Notas recebidas com sucesso.");
+      return notas;
+   }
+    public double[] FunçãoCalcula(double x[][]) {
+        int i, j;
+        double soma, med [] = new double [3];
+        for (i=0; i <3; i++){
+            soma = 0;
+            for (j=0; j<2; j++){
+                soma = soma + x[i][j];
+            }
+            med[i]= soma/2;
+        }
+        JOptionPane.showMessageDialog(null,"Cálculos das médias feitos com sucesso");
+        return med;
+    }
+    
+    public void ProcedimentoMostra(double v[]) {
+        for (int i=0; i<3; i++) { 
+             JOptionPane.showMessageDialog(null,"A Media do " +(i+1)+"º aluno foi "+v[i]+"\n");
+        } 
+    }
+}

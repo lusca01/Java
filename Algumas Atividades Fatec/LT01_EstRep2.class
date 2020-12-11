@@ -1,0 +1,27 @@
+import javax.swing.*;
+public class LT01_EstRep2 {
+    public static void main(String args[]){
+    int x, y, somatoria = 0;
+    x = Integer.parseInt(JOptionPane.showInputDialog("Digite um número:"));
+    y = Integer.parseInt(JOptionPane.showInputDialog("Digite outro número:"));
+    if (x > y){
+        while (y <= x){
+           if (y % 2 != 0){
+               somatoria = somatoria + y;
+           }
+           y++;
+        }
+        System.out.print("A somatória dos números ímpares entre os número digitado do menor para o maior é " + somatoria);
+    }else if (y > x){
+        while (x <= y){
+            if (x % 2 != 0){
+                somatoria = somatoria + x;
+            }
+            x++;
+        }
+        System.out.print("A somatória dos números ímpares entre os número digitado do menor para o maior é " + somatoria);
+    }else{
+        System.out.print("Números iguais.");
+    }
+    }
+}

@@ -1,0 +1,14 @@
+import javax.swing.JOptionPane;
+public class LT01_EX5{
+    public static void main(String args[]){
+    double Hr, Vhr, Desc, Par, Sal, Salb, SalFinal;
+    Hr = Integer.parseInt(JOptionPane.showInputDialog("Diga quantas horas são trabalhadas: "));
+    Vhr = Integer.parseInt(JOptionPane.showInputDialog("Valor recebido por hora: "));
+    Desc = Integer.parseInt(JOptionPane.showInputDialog("Diga o percentual de desconto: "));
+    Par= Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade de descendentes: "));
+    Sal = (Hr*Vhr);
+    Salb = Sal-((Sal*Desc)/100);
+    SalFinal = Salb + (Par*100);
+    JOptionPane.showMessageDialog(null,"O salário final é : " +SalFinal);
+    }
+}

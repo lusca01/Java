@@ -1,0 +1,10 @@
+public class LT01_EstRep1 {
+   public static void main(String args[]){
+   int x, c = 10;
+   while (c<=15){            //Coloquei até o 15 para teste
+      x = c*c;
+      System.out.println(x);
+      c++;
+   }
+   }
+}

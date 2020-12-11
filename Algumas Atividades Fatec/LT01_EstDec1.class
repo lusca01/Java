@@ -1,0 +1,21 @@
+import javax.swing.*;
+public class LT01_EstDec1 {
+  public static void main(String args[]){
+    int n1, n2, dif;
+    n1 = Integer.parseInt(JOptionPane.showInputDialog("Digite um número: "));
+    n2 = Integer.parseInt(JOptionPane.showInputDialog("Digite outro número: "));
+    if (n1 > n2) {
+      dif = n1 - n2;
+      JOptionPane.showMessageDialog(null,"A diferença do maior para o menor é " + dif);  
+    }
+    else {
+        if (n2 > n1){
+           dif = n2 - n1;
+           JOptionPane.showMessageDialog(null,"A diferença do maior para o menor é " + dif);
+        }
+        else{
+           JOptionPane.showMessageDialog(null,"Números iguais "); 
+        }
+    }
+  }
+}

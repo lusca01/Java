@@ -1,0 +1,18 @@
+import javax.swing.*;
+public class Exercicio1_loja {
+  public static void main(String args[]){
+     int i;
+     double totgeral = 0, totvenda, comissao, qtd[] = new double [5], preco[] = new double [5];
+     for (i=0; i < 5; i++){
+         qtd[i] = Double.parseDouble(JOptionPane.showInputDialog("Didite a quantidade do "+(i+1)+"º produto: "));
+         preco[i] = Double.parseDouble(JOptionPane.showInputDialog("Didite o preço do "+(i+1)+"º produto: "));
+     }
+     for (i=0; i < 5; i++){
+         totvenda = qtd[i] * preco[i];
+         JOptionPane.showMessageDialog(null,"Quantidade vendida do "+(i+1)+"º produto:"+ qtd[i]+" valor do "+(i+1)+"º produto:"+preco[i]+" Total da venda: "+totvenda);
+         totgeral = totgeral + totvenda;
+     }
+     comissao = (totgeral*0.05);
+     JOptionPane.showMessageDialog(null,"Valor total das vendas:"+totgeral+" valor da comissão:"+comissao);
+  }  
+}

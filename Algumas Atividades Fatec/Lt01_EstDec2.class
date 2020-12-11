@@ -1,0 +1,33 @@
+import javax.swing.*;
+public class Lt01_EstDec2 {
+  public static void main(String args[]){
+  int n1, n2, n3, n4;
+  n1 = Integer.parseInt(JOptionPane.showInputDialog("Digite um número: "));
+  n2 = Integer.parseInt(JOptionPane.showInputDialog("Digite um número maior que o anterior: "));
+  n3 = Integer.parseInt(JOptionPane.showInputDialog("Digite um número maior que o anterior: "));
+  n4 = Integer.parseInt(JOptionPane.showInputDialog("Digite qualquer número: "));
+  if ((n1>n2) || (n2>n3) || (n1>n3)){
+      System.out.println("Valores incorretos");
+  }
+  else{
+       if (n4 <n1) {
+          System.out.println(n4 +"," + n1 +"," +n2+"," + n3);
+          }
+          else{
+            if ((n4>n1) && (n4<n2)){
+               System.out.println(n1 +"," +n4 +","+ n2+"," + n3);
+            }
+            else{
+              if ((n4>n2)&& (n4<n3)){
+                System.out.println(n1 +","+ n2 +","+ n4 +","+ n3);
+              }
+              else{
+                if (n4>n3){
+                    System.out.println(n1 +","+ n2 +","+ n3 +","+ n4);
+                           }    
+                   }
+               }
+        }
+  }
+ }
+}
