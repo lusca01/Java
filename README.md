@@ -1,2 +1,2 @@
 # Java
- Trabalhos feito na linguagem Java
+ Trabalhos feitos na linguagem de programação Java.
